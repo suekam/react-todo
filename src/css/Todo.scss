@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+}
+.Todo__Page {
+  font-family: 'Fira Sans', sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: auto;
+}
+.Todo__Scroller {
+  width: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.Todo__Container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 20px;
+  position: relative;
+}
+.Todo__Box {
+  min-height: 500px;
+  padding: 20px;
+  margin-bottom: 50px;
+  position: relative;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  font-size: .8em;
+  color: #444;
+  overflow: scroll;
+  border-radius: 2px;
+  transition: .3s ease all;
+}
+.Todo__InputWrapper {
+  display: flex;
+}
+.Todo__InputWrapper__input {
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+  line-height: 30px;
+  height: 30px;
+  flex: 1;
+  background: inherit;
+  font-family: inherit;
+  &::placeholder{
+    color: #aaa;
+  }
+  &:focus {
+    outline: none;
+    &::placeholder{
+      color: transparent;
+    }
+  }
+}
+.Todo__InputWrapper__button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  font-size: 2em;
+  color: #444;
+  margin-right: -5px;
+  cursor: pointer;
+  transition: .3s ease all;
+  &:hover {
+    color: #888;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.Todo__Created {
+  color: #333;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.Todo__ListName {
+  text-decoration: underline;
+  cursor: pointer;
+  text-decoration-color: #aaa;
+  display: inline-block;
+  padding: 5px;
+  transition: .3s ease all;
+  &:hover {
+    color: #000;
+  }
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    background-color: rgba(0,0,255,.05);
+      cursor: text;
+  }
+}
+.Todo__List,
+.Todo__List__item {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.Todo__List {
+
+}
+.Todo__List__item {
+  padding: 10px 40px 10px 10px;
+  position: relative;
+  margin-right: 8px;
+}
+.Todo__List__item__created ,
+.Todo__List__item__done {
+  letter-spacing: .5px;
+  margin: 0 0 5px;
+  transform: translateY(-50%);
+  transition: .3s ease all;
+  // font-weight: bold;
+}
+// .Todo__List__item__created {
+//   color: indianred;
+// }
+// .Todo__List__item__done {
+//   color: #5ccdcd;
+// }
+.Todo__List__item__name {
+  font-size: 1.3em;
+  text-decoration: underline;
+  cursor: pointer;
+  text-decoration-color: #aaa;
+  padding: 5px;
+  min-width: 40%;
+  margin-left: -5px;
+  display: inline-block;
+  transition: .3s ease all;
+
+  &:hover {
+    color: #000;
+  }
+  &:focus {
+    outline: none;
+    cursor: text;
+    text-decoration: none;
+    background-color: rgba(0,0,255,.05);
+  }
+}
+
+.Todo__List__item__cb,
+.Todo__List__item__cbCover {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: 0;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+}
+.Todo__List__item__cb {
+  cursor: pointer;
+  &:checked + .Todo__List__item__cbCover {
+    background: lighten(#5ccdcd,20%);
+    &:before {
+      display: block;
+    }
+  }
+}
+.Todo__List__item__cbCover {
+  line-height: 20px;
+  border-radius: 2px;
+  font-weight: bold;
+  text-align: center;
+  background: lighten(indianred,20%);
+  pointer-events: none;
+  transition: .3s ease all;
+  &:before {
+    content: '·';
+    color: #fff;
+    display: none;
+  }
+}
+.Todo__List__Item__Button,
+.Todo__List__item__FavButton {
+  transition: .3s ease all;
+  &:hover {
+    opacity: .8 !important;
+  }
+}
+// .Todo__List__item:hover .Todo__List__Item__Button {
+//     opacity: 1;
+// }
+.Todo__List__Item__Button {
+  color: white;
+  font-weight: bold;
+  border: none;
+  background: rgba(139,139,139, 0.8);
+  margin-right: 10px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 100%;
+  // opacity: 0;
+  &:focus {
+    outline: none;
+  }
+  &.green {
+    background: rgba(34, 139, 34, 0.3);
+    color: rgba(34, 139, 34, 1);
+  }
+  &.red {
+    background: rgba(139, 34, 34, 0.3);
+    color: rgba(139, 34, 34, 1);
+  }
+  .mi {
+    font-size: 18px;
+    vertical-align: middle;
+    pointer-events: none; // to avoid blocking the click event from landing on .Todo__List__Item__Button
+  }
+}
+.Todo__List__item__FavButton {
+  background: transparent;
+  border: 0;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
+  bottom: 50%;
+  margin-bottom: -15px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  .mi {
+    pointer-events: none; // to avoid blocking the click event from landing on .Todo__List__Item__Button
+  }
+}
+.Todo__AddListButton{
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  padding: 0;
+  border: 0;
+  background: rgba(100,100,255,.3);
+  color: rgba(100,100,255,1);
+  text-shadow: 0px 2px 8px rgba(100,100,230,.3);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 50px;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: .3s ease all;
+  &:hover {
+    opacity: .8
+  }
+  &.mi {
+    font-size: 50px;
+  }
+}
+.Todo__ListDeteleButton {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  top: 0;
+  right: 0;
+  margin: 16px 5px;
+  cursor: pointer;
+  padding: 0;
+  color: #aaa;
+  &:hover {
+    opacity: .8
+  }
+  &.mi {
+  }
+}
